@@ -456,8 +456,7 @@ class CardStack extends Component {
             ]
           }, this.props.cardContainerStyle]}>
           {cardB}
-          {<Animated.View
-          {...console.log(topCard)}
+          <Animated.View
       style={{
         opacity: (topCard === 'cardB') ? this.nopeOpacity : 0,
         transform: [{ rotate: "30deg" }],
@@ -503,7 +502,7 @@ class CardStack extends Component {
       LIKE
     </Text>
  
-    </Animated.View>}
+    </Animated.View>
         </Animated.View>
         <Animated.View
           {...this._setPointerEvents(topCard, 'cardA')}
@@ -523,7 +522,7 @@ class CardStack extends Component {
             ]
           }, this.props.cardContainerStyle]}>
           {cardA}
-          {<Animated.View
+          <Animated.View
           {...console.log(topCard)}
       style={{
         opacity: (topCard === 'cardA') ? this.nopeOpacity : 0,
@@ -570,7 +569,7 @@ class CardStack extends Component {
       LIKE
     </Text>
  
-    </Animated.View>}
+    </Animated.View>
           {/* <Text
       style={{
         position: 'absolute',
