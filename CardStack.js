@@ -468,11 +468,11 @@ class CardStack extends Component {
     >
       <Text
         style={{
-          borderWidth: 3,
-          borderColor: "red",
-          color: "red",
+          borderWidth: 2,
+          borderColor: "#fc032d",
+          color: "#fc032d",
           fontSize: 32,
-          // fontWeight: "800",
+          fontWeight: "800",
           padding: 10
         }}
       >
@@ -492,8 +492,8 @@ class CardStack extends Component {
     <Text
       style={{
         borderWidth: 1,
-        borderColor: "green",
-        color: "green",
+        borderColor: "#03fc1c",
+        color: "#03fc1c",
         fontSize: 32,
         fontWeight: "800",
         padding: 10
@@ -523,7 +523,6 @@ class CardStack extends Component {
           }, this.props.cardContainerStyle]}>
           {cardA}
           <Animated.View
-          {...console.log(topCard)}
       style={{
         opacity: (topCard === 'cardA') ? this.nopeOpacity : 0,
         transform: [{ rotate: "30deg" }],
@@ -535,11 +534,11 @@ class CardStack extends Component {
     >
       <Text
         style={{
-          borderWidth: 3,
-          borderColor: "red",
-          color: "red",
+          borderWidth: 2,
+          borderColor: "#fc032d",
+          color: "#fc032d",
           fontSize: 32,
-          // fontWeight: "800",
+          fontWeight: "800",
           padding: 10
         }}
       >
@@ -558,9 +557,9 @@ class CardStack extends Component {
   >
     <Text
       style={{
-        borderWidth: 1,
-        borderColor: "green",
-        color: "green",
+        borderWidth: 2,
+        borderColor: "#03fc1c",
+        color: "#03fc1c",
         fontSize: 32,
         fontWeight: "800",
         padding: 10
