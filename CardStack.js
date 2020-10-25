@@ -29,7 +29,10 @@ class CardStack extends Component {
       topCard: 'cardA',
       cards: [],
       touchStart: 0,
+
     };
+
+   //console.log(this.nopeOpacity);
     this.distance = this.constructor.distance;
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => false,
@@ -121,7 +124,22 @@ class CardStack extends Component {
         return true;
       },
     });
+
+    this.nopeOpacity = this.state.drag.x.interpolate({
+      inputRange: [-width / 2, 0, width / 2],
+      outputRange: [1, 0, 0],
+      extrapolate: 'clamp'
+   })
+
+   this.likeOpacity = this.state.drag.x.interpolate({
+    inputRange: [-width / 2, 0, width / 2],
+    outputRange: [0, 0, 1],
+    extrapolate: 'clamp'
+ })
+
   }
+
+
 
   componentDidUpdate(prevProps) {
     if (typeof this.props.children === 'undefined') return;
@@ -188,7 +206,7 @@ class CardStack extends Component {
       {
         toValue: 0,
         duration: this.props.duration,
-        useNativeDriver: this.props.useNativeDriver || false,
+        useNativeDriver: true
       }
     ).start();
     Animated.spring(
@@ -196,7 +214,7 @@ class CardStack extends Component {
       {
         toValue: { x: 0, y: 0 },
         duration: this.props.duration,
-        useNativeDriver: this.props.useNativeDriver || false,
+        useNativeDriver: true
       }
     ).start();
   }
@@ -273,7 +291,7 @@ class CardStack extends Component {
         {
           toValue: 0,
           duration: this.props.duration,
-          useNativeDriver: this.props.useNativeDriver || false,
+          useNativeDriver: true
         }
       ).start();
 
@@ -282,7 +300,7 @@ class CardStack extends Component {
         {
           toValue: { x: 0, y: 0 },
           duration: this.props.duration,
-          useNativeDriver: this.props.useNativeDriver || false,
+          useNativeDriver: true
         }
       ).start();
     })
@@ -324,7 +342,7 @@ class CardStack extends Component {
         {
           toValue: 220,
           duration,
-          useNativeDriver: this.props.useNativeDriver || false,
+          useNativeDriver: true
         }
       ).start();
 
@@ -333,7 +351,7 @@ class CardStack extends Component {
         {
           toValue: { x: (horizontalSwipe) ? x : 0, y: (verticalSwipe) ? y : 0 },
           duration,
-          useNativeDriver: this.props.useNativeDriver || false,
+          useNativeDriver: true
         }
       ).start(() => {
 
@@ -413,8 +431,9 @@ class CardStack extends Component {
       outputRange: this.props.outputRotationRange,
       extrapolate: 'clamp',
     });
-
     return (
+
+
       <View {...this._panResponder.panHandlers} style={[{ position: 'relative' }, this.props.style]}>
 
         {renderNoMoreCards()}
@@ -437,6 +456,54 @@ class CardStack extends Component {
             ]
           }, this.props.cardContainerStyle]}>
           {cardB}
+          {/* <Animated.View
+          {...console.log(topCard)}
+      style={{
+        opacity: (topCard === 'cardB') ? this.nopeOpacity : 0,
+        transform: [{ rotate: "30deg" }],
+        position: "absolute",
+        top: 50,
+        right: 40,
+        zIndex: 1000
+      }}
+    >
+      <Text
+        style={{
+          borderWidth: 3,
+          borderColor: "red",
+          color: "red",
+          fontSize: 32,
+          // fontWeight: "800",
+          padding: 10
+        }}
+      >
+        NOPE
+      </Text>
+      </Animated.View>
+      <Animated.View
+    style={{
+      opacity: (topCard === 'cardB') ? this.likeOpacity : 0,
+      transform: [{ rotate: "-30deg" }],
+      position: "absolute",
+      top: 50,
+      left: 40,
+      zIndex: 1000
+    }}
+  >
+    <Text
+      style={{
+        borderWidth: 1,
+        borderColor: "green",
+        color: "green",
+        fontSize: 32,
+        fontWeight: "800",
+        padding: 10
+      }}
+    >
+      LIKE
+    </Text>
+ 
+    </Animated.View> */}
         </Animated.View>
         <Animated.View
           {...this._setPointerEvents(topCard, 'cardA')}
@@ -456,6 +523,70 @@ class CardStack extends Component {
             ]
           }, this.props.cardContainerStyle]}>
           {cardA}
+          {/* <Animated.View
+          {...console.log(topCard)}
+      style={{
+        opacity: (topCard === 'cardA') ? this.nopeOpacity : 0,
+        transform: [{ rotate: "30deg" }],
+        position: "absolute",
+        top: 50,
+        right: 40,
+        zIndex: 1000
+      }}
+    >
+      <Text
+        style={{
+          borderWidth: 3,
+          borderColor: "red",
+          color: "red",
+          fontSize: 32,
+          // fontWeight: "800",
+          padding: 10
+        }}
+      >
+        NOPE
+      </Text>
+      </Animated.View>
+      <Animated.View
+    style={{
+      opacity: (topCard === 'cardA') ? this.likeOpacity : 0,
+      transform: [{ rotate: "-30deg" }],
+      position: "absolute",
+      top: 50,
+      left: 40,
+      zIndex: 1000
+    }}
+  >
+    <Text
+      style={{
+        borderWidth: 1,
+        borderColor: "green",
+        color: "green",
+        fontSize: 32,
+        fontWeight: "800",
+        padding: 10
+      }}
+    >
+      LIKE
+    </Text>
+ 
+    </Animated.View> */}
+          {/* <Text
+      style={{
+        position: 'absolute',
+        top: 15,
+        right:20,
+        opacity: this.nopeOpacity.__getValue(),
+        borderWidth: 1,
+        //borderColor: "red",
+        //color: "red",
+        fontSize: 32,
+        //fontWeight: "800",
+        //padding: 10
+      }}
+    >
+      NOPE
+    </Text>   */}
         </Animated.View>
 
       </View>
@@ -503,8 +634,9 @@ CardStack.defaultProps = {
   cardContainerStyle: {},
   secondCardZoom: 0.95,
   loop: false,
+
   initialIndex: 0,
-  renderNoMoreCards: () => { return (<Text>No More Cards</Text>) },
+  renderNoMoreCards: () => { },
   onSwipeStart: () => null,
   onSwipeEnd: () => null,
   onSwiped: () => { },
