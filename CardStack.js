@@ -442,6 +442,8 @@ class CardStack extends Component {
           {...this._setPointerEvents(topCard, 'cardB')}
           style={[{
             position: 'absolute',
+            height:'100%',
+            width:'100%',
             zIndex: (topCard === 'cardB') ? 3 : 2,
             ...Platform.select({
               android: {
@@ -508,6 +510,8 @@ class CardStack extends Component {
           {...this._setPointerEvents(topCard, 'cardA')}
           style={[{
             position: 'absolute',
+            height:'100%',
+            width:'100%',
             zIndex: (topCard === 'cardA') ? 3 : 2,
             ...Platform.select({
               android: {
